@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reset password</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <style>
+      body {
+    height: 100vh;
+    margin: 0; /* Remove default margin */
+    padding: 0;
+    display: grid;
+    place-items: center;
+    background: #000 url("https://img.freepik.com/free-vector/gradient-brain-background_23-2150441902.jpg?size=626&ext=jpg&ga=GA1.1.2116175301.1718323200&semt=ais_user");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar styles */
+.navbar {
+    padding: 20px 60px;
+    background-color: var(--color-black);
+    width: 100%; /* Ensure the navbar takes full width */
+    box-shadow: 0 4px 8px rgba(11, 11, 11, 0.679);
+    position: fixed; /* Fix the navbar at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.navbar .navbar-brand img {
+    max-width: 170px;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.navbar .navbar-nav .dropdown-menu {
+    background: linear-gradient(180deg, #00265B 0%, #000000 100%);
+    border-radius: 10px;
+}
+
+.navbar .navbar-nav .dropdown-menu a {
+    color: white !important;
+}
+
+/* Form styles */
+.container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(236, 234, 234, 0.2);
+    text-align: center;
+    /* margin: 50px auto; Centering using auto margins */
+}
+
+#heading {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.form2 {
+    width: 100%; /* Occupy full width of the container */
+    max-width: 400px; /* Limit maximum width */
+    padding: 20px;
+    /* background-color: rgba(0, 0, 0, 0.8); */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(236, 234, 234, 0.2);
+    text-align: center;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-group label {
+    width: 150px;
+    margin-right: 10px;
+    text-align: right;
+    color: white;
+}
+
+.form-group input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    max-width: 200px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease; /* Add transition for smooth effect */
+}
+
+.form-group input:hover,
+.form-group input:focus {
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.971); /* Lighter color when focused or hovered */
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e9e7ed;
+    color: black;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #8d9fa6;
+}
+
+/* Media queries for responsiveness */
+@media all and (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: none;
+        left: -40%;
+    }
+    .navbar .nav-item:hover .dropdown-menu {
+        display: block;
+        left: -20%;
+    }
+    .navbar .nav-item .dropdown-menu {
+        margin-top: 0;
+    }
+}
+
+@media all and (max-width: 1150px) {
+    .nav-custom {
+        padding: 20px 20px; /* Adjust padding for smaller screens */
+    }
+}
+
+@media all and (max-width: 900px) {
+    button.navbar-toggler {
+        background-color: #006e9600;
+        padding: 2px;
+        line-height: 0;
+        color: #fff;
+        font-size: 25px;
+        outline: none;
+        border: none;
+    }
+    .bg-gradient-hover {
+        padding: 15px 10px;
+    }
+    .bg-gradient-hover a {
+        line-height: 1.5;
+    }
+    .card-custom {
+        padding: 15px;
+    }
+    p.card-heading {
+        font-size: 17px;
+    }
+}
+
+@media all and (max-width: 765px) {
+    .nav-custom {
+        padding: 20px 20px; /* Ensure navbar padding remains consistent */
+    }
+    .card-custom {
+        margin-bottom: 20px;
+    }
+    .card-custom {
+        padding: 25px;
+    }
+    p.card-heading {
+        font-size: 22px;
+    }
+}
+
+   </style> 
+
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg nav-custom">
+                <a class="navbar-brand navbar-nav me-auto" href="https://uat.quadwave.com/service-offring/artificial-intelligence/llama-2/">
+                    <img class="img-fluid logo-w" src="{% static 'images/logo.png' %}" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="collapse navbar-collapse flex-row-reverse" id="navbarText">
+                    <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Solutions</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                              
+                                <li><a class="dropdown-item" href="{% url 'login' %}">HR Analytics</a></li>
+                                <li><a class="dropdown-item" href="#">Document Summarization</a></li>
+                                <li><a class="dropdown-item" href="#">e-gov Online Assistant</a></li>
+                                <li><a class="dropdown-item" href="#">Llama2 Use Cases (Industries)</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Llama Positioning</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                                <li><a class="dropdown-item" href="#">Comparative Analysis of LLMs</a></li>
+                                <li><a class="dropdown-item" href="#">Llama2 Advantages</a></li>
+                                <li><a class="dropdown-item" href="#">How to Choose LLM</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Llama2 Documentation</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                                <li><a class="dropdown-item" href="#">LLM FAQs</a></li>
+                                <li><a class="dropdown-item" href="#">Llama2 FAQs</a></li>
+                                <li><a class="dropdown-item" href="#">Approach Notes</a></li>
+                                <li><a class="dropdown-item" href="#">White Papers</a></li>
+                                <li><a class="dropdown-item" href="#">Best Practices</a></li>
+                                <li><a class="dropdown-item" href="#">Llama2 Blogs</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Learn Llama2</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                                <li><a class="dropdown-item" href="#">Videos</a></li>
+                                <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="https://uat.quadwave.com/contact-us/">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 id="heading">Password Reset</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="new_password">New Password:</label>
+            <input type="password" id="new_password" name="new_password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+        <button type="submit">Reset Password</button>
+    </form>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+      
+    </div>
+   
+
+</body>
+</html>
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset Done</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+     body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    background: #000 url("https://static.vecteezy.com/system/resources/previews/035/158/427/non_2x/artificial-intelligence-background-concept-with-abstract-molecular-structure-and-wave-flow-futuristic-digital-brain-future-technology-illustration-eps10-free-vector.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    text-align: center; /* Center align text */
+    color: white;
+    margin-top: 100px; /* Adjust margin as needed */
+}
+
+.reset-done {
+    max-width: 600px; /* Limit maximum width */
+    padding: 20px;
+    text-align: center; /* Center align text */
+    margin: 0 auto; /* Center horizontally */
+    /* background-color: rgba(0, 0, 0, 0.8); */
+    border-radius: 10px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    margin-top: 30px; /* Adjust margin as needed */
+    margin-left: -270px;
+    margin-right: 100px;
+}
+
+.reset-done h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.reset-done p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: white; /* Adjust text color */
+}
+        /* Navbar styles */
+        .navbar {
+            padding: 20px 60px;
+            background-color: var(--color-black);
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(11, 11, 11, 0.679);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between; /* Distribute items evenly */
+            align-items: center; /* Align items vertically */
+        }
+
+        .navbar .navbar-brand img {
+            max-width: 170px;
+        }
+
+        .navbar .navbar-nav {
+            display: flex;
+            gap: 20px; /* Adjust space between navbar items */
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: white !important;
+        }
+
+        .navbar .navbar-nav .dropdown-menu {
+            background: linear-gradient(180deg, #00265B 0%, #000000 100%);
+            border-radius: 10px;
+        }
+
+        .navbar .navbar-nav .dropdown-menu a {
+            color: white !important;
+        }
+
+     
+
+/* Media query for smaller screens */
+@media (max-width: 576px) {
+    .reset-done {
+        padding: 20px;
+    }
+}
+
+        /* Media queries for responsiveness */
+        @media all and (max-width: 1150px) {
+            .nav-custom {
+                padding: 20px 20px;
+            }
+        }
+
+        @media all and (max-width: 900px) {
+            button.navbar-toggler {
+                background-color: #006e9600;
+                padding: 2px;
+                line-height: 0;
+                color: #fff;
+                font-size: 25px;
+                outline: none;
+                border: none;
+            }
+
+            .bg-gradient-hover {
+                padding: 15px 10px;
+            }
+
+            .bg-gradient-hover a {
+                line-height: 1.5;
+            }
+
+            .card-custom {
+                padding: 15px;
+            }
+
+            p.card-heading {
+                font-size: 17px;
+            }
+        }
+
+        @media all and (max-width: 765px) {
+            .nav-custom {
+                padding: 20px 20px;
+            }
+
+            .card-custom {
+                margin-bottom: 20px;
+                padding: 25px;
+            }
+
+            p.card-heading {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg nav-custom">
+                <a class="navbar-brand" href="https://uat.quadwave.com/service-offring/artificial-intelligence/llama-2/">
+                    <img class="img-fluid logo-w" src="{% static 'images/logo.png' %}" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="collapse navbar-collapse flex-row-reverse" id="navbarText">
+                    <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Solutions</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                                <li><a class="dropdown-item" href="{% url 'login' %}">HR Analytics</a></li>
+                               
+                                <li><a class="dropdown-item" href="#">Document Summarization</a></li>
+                                <li><a class="dropdown-item" href="#">e-gov Online Assistant</a></li>
+                                <li><a class="dropdown-item" href="#">Llama2 Use Cases (Industries)</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="https://uat.quadwave.com/contact-us/">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="reset-done">
+            <h1>Password Reset Email Sent</h1>
+            <p>We've emailed you instructions for setting your password. You should receive the email shortly.</p>
+            <p>If you don't receive an email, please make sure you've entered the address you registered with, and check your spam folder.</p>
+        </div>
+    </div>
+</body>
+</html>

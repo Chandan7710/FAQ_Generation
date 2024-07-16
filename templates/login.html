@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login2.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    var messageAlert = document.getElementById('message-alert');
+    if (messageAlert) {
+        setTimeout(function () {
+            messageAlert.style.display = 'none';
+        }, 1000); // 10000 milliseconds = 10 seconds
+    }
+});
+    </script>
+    <style>
+
+        body {
+    height: 100vh;
+    margin: 0; /* Remove default margin */
+    padding: 0;
+    display: grid;
+    place-items: center;
+    background: #000 url("https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlMTlfdmlzdWFsaXphdGlvbl9vZl9xdWFudHVtX25ldHdvcmtfYWxnb3JpdGhtc19fd19iYzZlYTRmOS00MjhjLTQzMjctOGM1OC1mOWViMGQzNzA4ZDlfMS5qcGc.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+}
+        .form-group input {
+    flex: 1;
+    padding: 10px; /* Increased padding for better spacing */
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 200px; /* Full width */
+    height: 50px;
+    max-width: none; /* Remove max-width limitation */
+    color: black;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease; /* Add transition for smooth effect */
+}
+button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e9e7ed;
+    color: black;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-left: 80px; /* Add left margin to move the button to the right */
+}
+a{
+    color: white;
+    margin-left: 0px;
+}
+.logo-w {
+    max-width: 190px; /* Adjust the maximum width of the logo */
+    margin-left: 40px;
+}
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg nav-custom">
+                <a class="navbar-brand navbar-nav me-auto" href="https://uat.quadwave.com/service-offring/artificial-intelligence/llama-2/">
+                    <img class="img-fluid logo-w" src="{% static 'images/logo.png' %}" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="collapse navbar-collapse flex-row-reverse" id="navbarText">
+                    <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Solutions</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                                {% if user.is_authenticated %}
+                                <li><a class="dropdown-item" href="{% url 'e_gov_faq:e_faq' %}">FAQ Generation</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'login' %}">FAQ Generation</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Llama Positioning</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                                <li><a class="dropdown-item" href="#">Comparative Analysis of LLMs</a></li>
+                                <li><a class="dropdown-item" href="#">Llama2 Advantages</a></li>
+                                <li><a class="dropdown-item" href="#">How to Choose LLM</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Llama2 Documentation</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                                <li><a class="dropdown-item" href="#">LLM FAQs</a></li>
+                                <li><a class="dropdown-item" href="#">Llama2 FAQs</a></li>
+                                <li><a class="dropdown-item" href="#">Approach Notes</a></li>
+                                <li><a class="dropdown-item" href="#">White Papers</a></li>
+                                <li><a class="dropdown-item" href="#">Best Practices</a></li>
+                                <li><a class="dropdown-item" href="#">Llama2 Blogs</a></li>
+                            </ul>
+                        </li> -->
+                        <!-- <li class="nav-item"> -->
+                            <!-- <a class="nav-link text-white" href="{% url 'register' %}">register</a> -->
+                            <!-- <ul class="dropdown-menu text-white bg-gradient-hover">
+                                <li><a class="dropdown-item" href="#">Videos</a></li>
+                                <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+                            </ul> -->
+                        <!-- </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="https://uat.quadwave.com/contact-us/">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="form2">
+        <h3 id="heading">User Login</h3>
+        <form action="" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" id="pwd" name="pwd" placeholder="Enter your password" required>
+            </div>
+            <div class="center-button">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+        {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger mt-3" id="message-alert">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+    <div class="mt-3">
+        <a href="{% url 'password_reset' %}" class="forgot-password-link" >Forgot Password?</a>
+    </div>
+</div>
+</body>
+</html>
+

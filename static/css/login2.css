@@ -1,0 +1,228 @@
+/* Base styles */
+
+
+
+
+/* Add this style to adjust the navbar and login form positioning */
+.container-fluid {
+    position: absolute;
+    top: 0;
+}
+
+.form2 {
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-group label {
+    width: 150px;
+    margin-right: 10px;
+    text-align: right;
+    color: white;
+}
+
+
+/* .form-group input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    max-width: 700px;
+    color:black;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease; /* Add transition for smooth effect 
+} */
+
+/* .form-group input {
+    flex: 1;
+    padding: 10px; /* Increased padding for better spacing 
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 200px; /* Full width 
+    max-width: none; /* Remove max-width limitation 
+    color: black;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease; /* Add transition for smooth effect 
+} */
+.form-group input:hover,
+.form-group input:focus {
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.971); /* Lighter color when focused or hovered */
+}
+
+
+button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e9e7ed;
+    color: black;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-left: 80px; /* Add left margin to move the button to the right */
+    
+}
+
+button[type="submit"]:hover {
+    background-color: #8d9fa6;
+}
+
+#heading {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    margin-left: 30px;
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 70%;
+    margin-top: 20px;
+    text-align: center; /* Align content (including the button) to the center */
+}
+
+.nav-custom {
+    padding: 20px 60px;
+    background-color: var(--color-black);
+    width: 100%; /* Ensure the navbar takes full width */
+    box-shadow: 0 4px 8px rgba(11, 11, 11, 0.679);
+    position: fixed; /* Fix the navbar at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.logo-w {
+    width: 170px;
+}
+
+.bg-gradient-hover {
+    background: linear-gradient(180deg, #00265B 0%, #000000 100%);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.bg-gradient-hover a {
+    color: var(--color-white);
+    font-size: 14px;
+    line-height: 2;
+}
+
+.card-custom {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8828781512605042) 0%, rgba(0, 37, 148, 0.7848389355742297) 49%, rgba(0, 147, 147, 0.7792366946778712) 100%);
+    display: flex;
+    border-radius: 20px;
+    padding: 30px;
+    outline: none;
+    border: none;
+}
+
+.card-custom img {
+    width: 85px;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+p.card-heading {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.bg-img-design {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bg-img {
+    background: #000 url('https://hrtest499.azurewebsites.net/static/images/bgimage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+p.justify-text {
+    text-align: justify;
+}
+
+@media all and (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu { 
+        display: none; 
+        left: -40%; 
+    }
+    .navbar .nav-item:hover .dropdown-menu { 
+        display: block; 
+        left: -20%; 
+    }
+    .navbar .nav-item .dropdown-menu { 
+        margin-top: 0; 
+    }
+}
+
+@media all and (max-width: 1150px) {
+    .nav-custom {
+        padding: 20px 20px; /* Adjust padding for smaller screens */
+    }
+}
+
+@media all and (max-width: 900px) {
+    button.navbar-toggler {
+        background-color: #006e9600;
+        padding: 2px;
+        line-height: 0;
+        color: #fff;
+        font-size: 25px;
+        outline: none;
+        border: none;
+    }
+
+    .bg-gradient-hover {
+        padding: 15px 10px;
+    }
+    .bg-gradient-hover a {
+        line-height: 1.5;
+    }
+    .card-custom {
+        padding: 15px;
+    }
+    p.card-heading {
+        font-size: 17px;
+    } 
+}
+
+@media all and (max-width: 765px) {
+    .nav-custom {
+        padding: 20px 20px; /* Ensure navbar padding remains consistent */
+    }
+    .card-custom {
+        margin-bottom: 20px;
+    }
+    .card-custom {
+        padding: 25px;
+    }
+    p.card-heading {
+        font-size: 22px;
+    } 
+}
+
+
+

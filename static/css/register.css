@@ -1,0 +1,143 @@
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #000 url("https://img.freepik.com/premium-photo/tech-abstract-background-crypto-technology-background-ai-generator_954970-778.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Other styles... */
+
+
+
+.form-group input:hover,
+.form-group input:focus {
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.971); /* Lighter color when focused or hovered */
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px; /* Add margin to center-button */
+}
+
+.form-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form2 {
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    /* background-color: #f6f4f4; */
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.form-group label {
+    width: 150px;
+    margin-right: 10px;
+    text-align: right;
+    color: white;
+}
+
+/* .form-group input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 4px;
+    max-width: 300px;
+} */
+/* .form-group input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid transparent; /* Make border transparent 
+    border-radius: 4px;
+    max-width: 200px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2); Set background color with transparency 
+}
+
+/* Modify the input box hover and focus styles 
+.form-group input:hover,
+.form-group input:focus {
+    border: 1px solid white; /* Change border color on hover and focus 
+    background-color: rgba(255, 255, 255, 0.4); /* Adjust background color transparency 
+} */
+
+button[type="submit"],
+button[type="button"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #828882;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-left: 200px;
+}
+
+button[type="button"] {
+    background-color: #008CBA;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #7a817b;
+}
+
+button[type="button"]:hover {
+    background-color: #007bb5;
+}
+
+.login-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: white;
+}
+
+.login-link p {
+    margin: 0;
+    color: white;
+}
+
+.login-link a {
+    margin-left: 10px;
+}
+
+/* .center-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+} */
+
+#heading {
+    text-align: center;
+    color: white;
+    margin-left: 20px;
+}

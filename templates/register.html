@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+       
+       function checkForm() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("pwd").value;
+            var confirmPwd = document.getElementById("confirmPwd").value;
+
+            if (email === "" || password === "" || confirmPwd === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            if (password !== confirmPwd) {
+                alert("Password and Confirm Password do not match!");
+                return false;
+            }
+            return true;
+        }
+ 
+
+        function displayErrorMessage() {
+        var errorMessage = document.getElementById('error-message');
+        if (errorMessage) {
+            errorMessage.style.display = 'block'; // Show error message
+
+            // Automatically hide after 10 seconds
+            setTimeout(function () {
+                errorMessage.style.display = 'none';
+            }, 1000); // 10000 milliseconds = 10 seconds
+        }
+    }
+
+    // Call function to display error message on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        displayErrorMessage();
+    });
+    </script>
+    <style>
+         #error-message {
+        display: none;
+    }
+    .form-group input {
+    flex: 1;
+    padding: 10px !important; /* Ensure padding is applied */
+    border: 1px solid transparent;
+    border-radius: 4px;
+    max-width: 300px;
+    font-size: 16px; /* Increase font size */
+    color: black;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease;
+}
+.logo-w {
+    max-width: 190px; /* Adjust the maximum width of the logo */
+    margin-left: 40px;
+}
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg nav-custom">
+                <a class="navbar-brand navbar-nav me-auto" href="https://uat.quadwave.com/service-offring/artificial-intelligence/llama-2/">
+                    <img class="img-fluid logo-w" src="{% static 'images/logo.png' %}" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="collapse navbar-collapse flex-row-reverse" id="navbarText">
+                    <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">Solutions</a>
+                            <ul class="dropdown-menu text-white bg-gradient-hover">
+                                {% if user.is_authenticated %}
+                                <li><a class="dropdown-item" href="{% url 'e_gov_faq:e_faq' %}">FAQ Generation</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'register' %}">FAQ Generation</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="https://uat.quadwave.com/contact-us/">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="form2">
+        <form action="" method="POST" onsubmit="return checkForm();">{% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email Id:</label>
+                <input type="email" id="email" name="email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">New Password:</label>
+                <input type="password" id="pwd" name="password" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPwd">Confirm Password:</label>
+                <input type="password" id="confirmPwd" name="confirmPwd" placeholder="Confirm Password" required>
+            </div>
+            <div class="center-button">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        
+            
+        </form>
+            <div class="login-link mt-3">
+                <p>If you're already registered click on</p>
+                <a href="{% url 'login' %}">login</a>
+            </div>
+        </div>
+
+            <!-- {% if error %}
+                <div class="alert alert-danger mt-3">{{ error }}</div>
+            {% endif %}
+        </div>
+    </div> -->
+   
+    {% if error %}
+    <div id="error-message" class="alert alert-danger mt-3">{{ error }}</div>
+{% endif %}
+</div>
+</div>
+</body>
+</html>
