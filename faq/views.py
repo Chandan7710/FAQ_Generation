@@ -24,9 +24,10 @@ import os
 import re
 from django.http import FileResponse, Http404
 
+# Initializing reraking model
+rerank = SentenceTransformerRerank(model="cross-encoder/ms-marco-MiniLM-L-2-v2", top_n=7)
 
-rerank = SentenceTransformerRerank(
-    model="cross-encoder/ms-marco-MiniLM-L-2-v2", top_n=7)
+# Setting the message role for system and user using prompt
 chat_text_qa_msgs = [
     ChatMessage(
         role=MessageRole.SYSTEM,
@@ -51,15 +52,11 @@ chat_text_qa_msgs = [
 
             "answer the question: {query_str} provided in bullet points or numbered list where appropriate.\n"
 
-
-
-
         ),
     ),
 ]
+
 text_qa_template = ChatPromptTemplate(chat_text_qa_msgs)
-
-
 def e_faq(request):
     # return render(request, 'doc_chat.html')
     return render(request, 'faq.html')
@@ -72,19 +69,22 @@ initialization_lock = Lock()
 
 
 def initialize_index_and_questions():
+    """This view index the documents and extracting the question and answer and storing that in a dictionary and storing the document embeddings in to the QdrantVectorStore"""
     global index, title_questions_dict
-
+    # Checks for initialization: It verifies if the global variables `index` and `title_questions_dict` have already been initialized.
     if index is None or title_questions_dict is None:
+        # If not initialized, it acquires a lock using `initialization_lock` to ensure thread-safe initialization.
         with initialization_lock:
             if index is None or title_questions_dict is None:
-                # Load documents
+                # Loads documents from a directory.
                 documents = SimpleDirectoryReader("./e_document").load_data()
 
+                # Initializes various models for embedding documents, using a large language model, and processing documents (splitting text, extracting titles and questions).
                 embed_model = LangchainEmbedding(HuggingFaceEmbeddings(
                     model_name=settings.SENTENCE_EMBEDDING_MODEL))
                 settings.embed_model = embed_model
 
-                # Initialize the LLM model
+                # Initialize the LLM model(Using Llama3 model through Together API)
                 llm = TogetherLLM(
                     model=settings.LLM_MODEL, api_key=settings.LLM_API_KEY)
                 settings.llm = llm
@@ -92,28 +92,32 @@ def initialize_index_and_questions():
                 # Set context window size
                 settings.context_window = settings.CONTEXT_WINDOW_SIZE
 
+                # TokenTextSplitter helps with splitting text based on word tokens.
                 text_splitter = TokenTextSplitter(
                     separator=" ", chunk_size=1000, chunk_overlap=64)
+                # TitleExtractor helps extract titles from documents or text passages.
                 title_extractor = TitleExtractor(nodes=30)
+                # QuestionsAnsweredExtractor helps in extracting potential questions and answer from the section.
                 qa_extractor = QuestionsAnsweredExtractor(questions=3)
 
+                # Processes the loaded documents using the pipeline
                 pipeline = IngestionPipeline(
                     transformations=[text_splitter, title_extractor, qa_extractor])
-
                 nodes = pipeline.run(documents=documents,
                                      in_place=True, show_progress=True)
                 title_questions_dict = {}
-
+                # Iterates through processed documents and builds a dictionary mapping titles to associated questions and summaries.
                 for node in nodes:
                     title = node.metadata.get('document_title', '').strip()
                     summary = node.metadata.get('summary', '').strip()
                     questions = node.metadata.get(
                         'questions_this_excerpt_can_answer', '').strip()
-
+                    # Filters documents based on title
                     # Check if the title starts with "e-kranti" or comes after it alphabetically
                     if title.lower() >= 'e-kranti':
                         # Extract questions from the formatted string
                         if questions:
+                            # Extracts questions from a formatted string within each document.
                             extracted_questions = [line.strip() for line in questions.split('\n') if line.strip(
                             ).startswith('1.') or line.strip().startswith('2.') or line.strip().startswith('3.')]
 
@@ -127,11 +131,12 @@ def initialize_index_and_questions():
 
                 # Initialize the Qdrant vector store
                 client = qdrant_client.QdrantClient(path="qdrant_faq")
+                # Creates a connection to a vector store for storing document embeddings
                 vector_store = QdrantVectorStore(
                     client=client, collection_name="text_collection")
                 storage_context = StorageContext.from_defaults(
                     vector_store=vector_store)
-
+                # Creates an index object likely using the processed documents (without metadata) and the vector store connection for efficient document retrieval.
                 nodes_no_metadata = deepcopy(nodes)
                 index = VectorStoreIndex(
                     nodes=nodes_no_metadata, storage_context=storage_context)
@@ -150,6 +155,8 @@ def filter_response(response_text):
 
 
 def format_answer(answer):
+    """This function converts the raw answer text into a more user-friendly format with bullet points, 
+        numbered lists, and potentially bold text for emphasis, removing unnecessary characters using regular expression"""
     # Remove asterisks used for bold formatting
     answer = re.sub(r'\*\*', '', answer)
 
@@ -203,6 +210,7 @@ def format_answer(answer):
 
 
 def generate_faq(request):
+    """This function takes a request object and generates a Frequently Asked Questions (FAQ) document in both Word (.docx) and HTML formats."""
     global index, text_qa_template, title_questions_dict  # Corrected index name
 
     # Define the output file path
@@ -281,6 +289,7 @@ def generate_faq(request):
 
 
 def download_file(request):
+    """This function handles downloading the generated FAQ document created by the generate_faq function."""
     # Define the path to the file you want to serve
     file_path = os.path.join(settings.BASE_DIR, 'faq_document.docx')
 
